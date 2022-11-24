@@ -1,0 +1,13 @@
+mat-card {
+  margin: 2rem;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+input {
+  width: 100%;
+}
+.mat-form-field {
+  width: 80%;
+}
