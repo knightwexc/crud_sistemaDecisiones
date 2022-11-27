@@ -4,3 +4,7 @@ span {
 mat-card {
   margin: 2rem;
 }
+mat-card img {
+  object-fit: cover;
+  height: 600px;
+}
