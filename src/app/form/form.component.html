@@ -1,4 +1,4 @@
-<form action="">
+<form [formGroup]="empleadoForm">
   <mat-card>
     <mat-card-header>
       <mat-card-title> Profile </mat-card-title>
@@ -8,25 +8,29 @@
         <div class="col-sm-6">
           <mat-form-field appearance="fill">
             <mat-label>Nombre</mat-label>
-            <input matInput />
+            <input matInput formControlName="nombre" placeholder="Nombre" />
           </mat-form-field>
         </div>
         <div class="col-sm-6">
           <mat-form-field appearance="fill">
             <mat-label>Apellidos</mat-label>
-            <input matInput />
+            <input
+              matInput
+              formControlName="apellidos"
+              placeholder="Apellidos"
+            />
           </mat-form-field>
         </div>
         <div class="col-sm-6">
           <mat-form-field appearance="fill">
             <mat-label>Puesto</mat-label>
-            <input matInput />
+            <input matInput formControlName="puesto" placeholder="Puesto" />
           </mat-form-field>
         </div>
         <div class="col-sm-6">
           <mat-form-field appearance="fill">
             <mat-label>Sucursal</mat-label>
-            <mat-select>
+            <mat-select formControlName="sucursal">
               <mat-option
                 *ngFor="let sucursal of sucursales"
                 [value]="sucursal.value"
@@ -38,19 +42,31 @@
         </div>
         <div class="col-sm-6">
           <mat-form-field appearance="fill">
-            <textarea matInput placeholder="Domicilio"></textarea>
+            <textarea
+              matInput
+              placeholder="Domicilio"
+              formControlName="domicilio"
+            ></textarea>
           </mat-form-field>
         </div>
         <div class="col-sm-6">
           <mat-form-field appearance="fill" floatLabel="always">
             <mat-label>Amount</mat-label>
-            <input matInput currencyMask placeholder="$0.00" value="" />
+            <input
+              matInput
+              currencyMask
+              placeholder="$0.00"
+              value=""
+              formControlName="sueldo"
+            />
           </mat-form-field>
         </div>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button color="primary" mat-raised-button>Guardar</button>
+      <button color="primary" mat-raised-button (click)="addEmpleado()">
+        Guardar
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>
