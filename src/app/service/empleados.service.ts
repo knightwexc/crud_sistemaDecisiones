@@ -25,6 +25,10 @@ export class EmpleadosService {
   borrarEmpleado(id: number): Observable<any> {
     return this.http.delete(this.url + '/empleado/' + id);
   }
+
+  // editarEmpleado(empleado: Empleado): Observable<any> {
+  //   return this.http.put(this.url + '/empleado/' + id);
+  // }
 }
 
 export interface Empleado {
