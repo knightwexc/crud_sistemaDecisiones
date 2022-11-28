@@ -1,4 +1,42 @@
 table {
-  margin: 2rem;
+  margin: 2rem 2rem 0 2rem;
   width: 80%;
+}
+
+.tablenull {
+  margin: 0 2rem;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #424242;
+  height: 56px;
+}
+th.mat-header-cell,
+td.mat-cell {
+  text-align: center;
+}
+
+#agregar {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  margin: 3rem 5rem;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.eliminar {
+  height: 51px;
+  width: 100%;
+  /* background-color: red; */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+td.mat-column-eliminar {
+  display: flex;
 }
