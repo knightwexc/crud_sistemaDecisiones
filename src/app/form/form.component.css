@@ -4,10 +4,16 @@ mat-card {
 .row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  text-align: center;
 }
 input {
   width: 100%;
 }
 .mat-form-field {
   width: 80%;
+}
+
+mat-card-actions button {
+  width: 100%;
 }

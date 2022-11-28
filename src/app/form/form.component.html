@@ -1,7 +1,12 @@
 <form [formGroup]="empleadoForm">
   <mat-card>
     <mat-card-header>
-      <mat-card-title> Profile </mat-card-title>
+      <ng-container *ngIf="RouteCheck(); else elseTemplate">
+        <mat-card-title> Editar empleado </mat-card-title>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <mat-card-title> Registrar empleado </mat-card-title>
+      </ng-template>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -51,7 +56,7 @@
         </div>
         <div class="col-sm-6">
           <mat-form-field appearance="fill" floatLabel="always">
-            <mat-label>Amount</mat-label>
+            <mat-label>Sueldo</mat-label>
             <input
               matInput
               currencyMask

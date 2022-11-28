@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpleadosService } from '../service/empleados.service';
+import { Router } from '@angular/router';
 
 interface Sucursales {
   value: string;
@@ -14,8 +15,10 @@ interface Sucursales {
 export class FormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private empleadosService: EmpleadosService
+    private empleadosService: EmpleadosService,
+    private router: Router
   ) {}
+
   empleadoForm!: FormGroup;
 
   ngOnInit(): void {
@@ -46,6 +49,15 @@ export class FormComponent implements OnInit {
         alert('Error al agregar empleado');
       },
     });
+  }
+
+  RouteCheck() {
+    // console.log(this.router.url.includes(';id'));
+    if (this.router.url.includes(';id')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   //   'id',
