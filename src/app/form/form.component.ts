@@ -13,6 +13,8 @@ interface Sucursales {
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
+  objectEmpleado: any;
+  idRoute: any;
   constructor(
     private formBuilder: FormBuilder,
     private empleadosService: EmpleadosService,
@@ -30,9 +32,32 @@ export class FormComponent implements OnInit {
       sucursal: ['', Validators.required],
       sueldo: ['', Validators.required],
     });
+
+    if (this.router.url.includes(';id')) {
+      this.idRoute = this.router.url.replace('/form;id=', '');
+      this.empleadosService.getEmpleado(Number(this.idRoute)).subscribe(
+        (res) => {
+          this.objectEmpleado = res;
+          console.log(this.objectEmpleado);
+
+          this.empleadoForm.setValue({
+            nombre: this.objectEmpleado.nombre,
+            apellidos: this.objectEmpleado.apellidos,
+            puesto: this.objectEmpleado.puesto,
+            sucursal: this.objectEmpleado.sucursal,
+            domicilio: this.objectEmpleado.domicilio,
+            sueldo: this.objectEmpleado.sueldo,
+          });
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   hide = true;
+
   sucursales: Sucursales[] = [
     { value: 'Culiacán' },
     { value: 'Mazatlán' },
@@ -51,8 +76,21 @@ export class FormComponent implements OnInit {
     });
   }
 
+  editarEmpleado() {
+    console.log(this.empleadoForm.value);
+    this.empleadosService
+      .editarEmpleado(this.idRoute, this.empleadoForm.value)
+      .subscribe({
+        next: (res) => {
+          alert('Empleado editado');
+        },
+        error: () => {
+          alert('Error al editar empleado');
+        },
+      });
+  }
+
   RouteCheck() {
-    // console.log(this.router.url.includes(';id'));
     if (this.router.url.includes(';id')) {
       return true;
     } else {
@@ -60,12 +98,7 @@ export class FormComponent implements OnInit {
     }
   }
 
-  //   'id',
-  // 'nombre',
-  // 'apellidos',
-  // 'domicilio',
-  // 'puesto',
-  // 'sucursal',
-  // 'sueldo',
-  // 'prioridad',
+  volver() {
+    this.router.navigate(['/lista']);
+  }
 }
