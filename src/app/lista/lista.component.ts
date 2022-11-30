@@ -47,9 +47,13 @@ export class ListaComponent implements OnInit {
   eliminarUsuarioLista(id: number) {
     this.empleadosService.borrarEmpleado(id).subscribe(
       (res) => {
-        console.log(res);
-        alert('Empleado con id: ' + id + ' ah sido borrado exitosamente');
-        window.location.reload();
+        console.log(res.message);
+        alert(res.message);
+        this.router
+          .navigateByUrl('/', { skipLocationChange: true })
+          .then(() => {
+            this.router.navigate(['/lista']);
+          });
       },
       (err) => {
         console.log(err);
@@ -58,7 +62,6 @@ export class ListaComponent implements OnInit {
   }
 
   editarUsuarioLista(id: number) {
-    console.log('click', id);
     // this.empleadosService.editarEmpleado(id).subscribe();
     this.router.navigate(['/form/', { id: id }]);
   }
