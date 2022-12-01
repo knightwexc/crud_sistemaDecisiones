@@ -1,6 +1,6 @@
 table {
-  margin: 2rem 2rem 0 2rem;
-  width: 80%;
+  margin: 2rem 0;
+  width: 90%;
 }
 
 .tablenull {
@@ -37,6 +37,102 @@ td.mat-cell {
   justify-content: center;
   align-items: center;
 }
+
 td.mat-column-eliminar {
   display: flex;
+}
+
+mat-card.modal {
+  margin: auto auto;
+  width: 800px;
+  height: 600px;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: white 1px solid;
+  background-color: #1c1c1c;
+  padding: 2rem;
+}
+tr.mat-row:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  -moz-box-shadow: -1px -1px 37px -9px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: -1px -1px 37px -9px rgba(0, 0, 0, 0.57);
+  box-shadow: -1px -1px 37px -9px rgba(0, 0, 0, 0.57);
+}
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.space-between p {
+  margin: 0;
+}
+.left {
+  border-right: white 1px solid;
+}
+.right {
+  height: 550px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.card_content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
+mat-form-field {
+  width: 235px;
+  margin-right: 2rem;
+}
+a:hover {
+  cursor: pointer;
+  color: #c2185b;
+}
+.registrar {
+  width: 100%;
+  margin-right: 2rem;
+}
+.historialProductos {
+  background-color: #424242;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  padding: 10px;
+}
+mat-card.cuadros {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+    0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+}
+mat-card.cuadros p {
+  margin: 0 5px 0 0;
+  text-transform: uppercase;
+}
+mat-card.cuadros span {
+  color: #c2185b;
+  font-weight: 700;
+}
+div.containerCuadros {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+}
+div.maxContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+div.containerTabla {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
