@@ -1,7 +1,11 @@
 <mat-card class="modal" *ngIf="!isClosed">
   <mat-card-header
     ><div class="space-between">
-      <h2>Labores</h2>
+      <div class="popo">
+        <h2>Total producido:</h2>
+        <span>{{ this.totalCantidad }} productos</span>
+        <!-- <span>Prom: {{ this.totalCantidad2 }}</span> -->
+      </div>
       <a (click)="isClosed = true">
         <mat-icon> close</mat-icon>
       </a>
@@ -154,8 +158,19 @@
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Status</th>
       <td mat-cell *matCellDef="let element">
-        <div class="status">
-          {{ element.status }}
+        <div
+          class="status"
+          [style.backgroundColor]="
+            element.status > infoProductos.promedio
+              ? 'green'
+              : 'rgb(171, 171, 0)'
+          "
+        >
+          {{
+            element.status > infoProductos.promedio
+              ? "Excelente😊"
+              : "Mejorable🫡"
+          }}
         </div>
       </td>
     </ng-container>

@@ -41,6 +41,8 @@ export class ListaComponent implements OnInit {
   // hour = new FormControl(new Date().toISOString().slice(11, 19));
   productoForm!: FormGroup;
   id_empleado: number = 0;
+  totalCantidad: number = 0;
+  totalCantidad2: number = 0;
   infoProductos: InfoProductos = {
     total: 0,
     promedio: 0,
@@ -152,6 +154,7 @@ export class ListaComponent implements OnInit {
     });
     this.getProductos();
     this.isClosed = false;
+    this.giveMeFckMoney(this.id_empleado);
   }
   getProductos() {
     this.empleadosService.getProducto(this.id_empleado).subscribe(
@@ -217,23 +220,30 @@ export class ListaComponent implements OnInit {
         (err) => {}
       );
     });
-
-    // (this.arraySalvacion = array.map((x: any) => {
-    //   return {
-    //     ...x,
-    //     status: this.empleadosService.getPromedioEmpleado(x['id']).subscribe(
-    //       (res): number => {
-    //         this.localVar = res;
-    //         console.log(this.localVar);
-    //         return this.promedioProduccion;
-    //       },
-    //       (err): number => {
-    //         this.localVar = err;
-    //         return this.promedioProduccion;
-    //       }
-    //     ),
-    //   };
-    // }));
-    // return dale;
   }
+
+  giveMeFckMoney(id: number) {
+    this.empleadosService.getTotalEmpleado(id).subscribe(
+      (res) => {
+        let preGuardado = res;
+        this.totalCantidad = preGuardado;
+      },
+      (err) => {
+        let preGuardado = err;
+        this.totalCantidad = preGuardado;
+      }
+    );
+  }
+  // giveMeFckMoney2(id: number) {
+  //   this.empleadosService.getPromedioEmpleado(id).subscribe(
+  //     (res) => {
+  //       console.log(res);
+  //       let preGuardado = res;
+  //       this.totalCantidad2 = preGuardado;
+  //     },
+  //     (err) => {
+  //       let preGuardado = err;
+  //       this.totalCantidad2 = preGuardado;
+  //     }
+  //   );
 }

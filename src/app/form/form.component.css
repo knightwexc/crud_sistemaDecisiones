@@ -17,3 +17,6 @@ input {
 mat-card-actions button {
   width: 100%;
 }
+#back {
+  margin: 2rem 2rem 0 2rem;
+}
