@@ -62,9 +62,10 @@ export class ListaComponent implements OnInit {
       cantidad: ['', Validators.required],
     });
     this.listarEmpleados();
-
+    //Aquí se jalan todos los promedios, minimos y maximos
     this.empleadosService.getTotalCantidad().subscribe(
       (res) => {
+        console.log(res);
         this.infoProductos.total = res;
       },
       (err) => {
@@ -96,7 +97,7 @@ export class ListaComponent implements OnInit {
       }
     );
   }
-
+  //Esto es para el html y la tabla, son las columnas
   displayedColumns: string[] = [
     'id',
     'nombre',
@@ -109,7 +110,7 @@ export class ListaComponent implements OnInit {
     'eliminar',
     'status',
   ];
-
+  // Este no se ocupa aclarar
   listarEmpleados() {
     this.empleadosService.getEmpleados().subscribe(
       (res) => {
@@ -121,7 +122,7 @@ export class ListaComponent implements OnInit {
       }
     );
   }
-  //Desicion
+  //Al eliminar empleado lo borramos de la base de datos al decirle a la api que ejecute el controlador que elimina el id que le enviamos, y despues nos devuelva a la página de la lista
   eliminarUsuarioLista(id: number) {
     this.empleadosService.borrarEmpleado(id).subscribe(
       (res) => {
@@ -138,12 +139,13 @@ export class ListaComponent implements OnInit {
       }
     );
   }
-
+  //editar claro esta
   editarUsuarioLista(id: number) {
     // this.empleadosService.editarEmpleado(id).subscribe();
     this.router.navigate(['/form/', { id: id }]);
   }
 
+  //Al presionar una fila de la tabla este metodo abre la nueva interfaz de productos, este es el responsable de cargar la info
   clickedRow(row: any) {
     this.id_empleado = row.id;
     this.productoForm.setValue({
@@ -156,6 +158,8 @@ export class ListaComponent implements OnInit {
     this.isClosed = false;
     this.giveMeFckMoney(this.id_empleado);
   }
+
+  //Esta funcion es la responsable de traer los registros de produccion del empleado y se muestren
   getProductos() {
     this.empleadosService.getProducto(this.id_empleado).subscribe(
       (res) => {
@@ -168,6 +172,7 @@ export class ListaComponent implements OnInit {
       }
     );
   }
+  //Esta funcion es la responsable de agregar registros de produccion al empleado
   addProducto() {
     const tiempoRegistro = this.date.value;
     let newObjectProducto = this.productoForm.value;
@@ -188,7 +193,8 @@ export class ListaComponent implements OnInit {
       }
     );
   }
-  //Desicion
+
+  //Esta funcion es la responsable de eliminar registros de produccion al empleado
   deleteProducto(id: any) {
     this.empleadosService.borrarProducto(id).subscribe(
       (res) => {
@@ -204,6 +210,7 @@ export class ListaComponent implements OnInit {
     this.productos.splice(indexOfObject, 1);
   }
 
+  //Esta funcion agarra el arreglo principal que obtengo de la base de datos y modifica objeto por objeto para agregarle su promedio a su respectivo empleado, lo hice así pq no había tiempo y no tenía chance de modificar la api
   listarPromedioProduccionEmpleado(array: any) {
     array.map((arrN: any) => {
       this.empleadosService.getPromedioEmpleado(arrN['id']).subscribe(
@@ -222,6 +229,7 @@ export class ListaComponent implements OnInit {
     });
   }
 
+  //Esta funcion la hice de ultimo momento, es para tomar el total de produccion de empleado y mostrarla en la interfaz oscura de produccion para compararla con los cuadros de promedios
   giveMeFckMoney(id: number) {
     this.empleadosService.getTotalEmpleado(id).subscribe(
       (res) => {
@@ -234,16 +242,4 @@ export class ListaComponent implements OnInit {
       }
     );
   }
-  // giveMeFckMoney2(id: number) {
-  //   this.empleadosService.getPromedioEmpleado(id).subscribe(
-  //     (res) => {
-  //       console.log(res);
-  //       let preGuardado = res;
-  //       this.totalCantidad2 = preGuardado;
-  //     },
-  //     (err) => {
-  //       let preGuardado = err;
-  //       this.totalCantidad2 = preGuardado;
-  //     }
-  //   );
 }
